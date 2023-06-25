@@ -10,6 +10,15 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<style>
+			#left-align{
+				text-align: left;
+			}
+			#small-font{
+				font-size: 15px;
+				font-family: Verdana, Geneva, Tahoma, sans-serif;
+			}
+		</style>
 	</head>
 	<body class="is-preload">
 
@@ -18,6 +27,7 @@
 				<ul class="container">
 					<li><a href="#top">About Me</a></li>
 					<li><a href="#work">Work</a></li>
+					<li><a href="#notes">Notes</a></li>
 					<li><a href="#contact">Contact</a></li>
 				</ul>
 			</nav>
@@ -142,6 +152,127 @@
 				</div>
 			</article>
 
+		
+		<!-- Notes -->
+			<article id="notes" class="wrapper style2">
+				<div class="container">
+					<header>
+						<h1>Notes</h1>
+					</header>
+					<!-- now I have to list topics and subsection/subdiv to those topics -->
+					<!-- Each division will take the full horizontal length -->
+					 	<div class="col-4 col-6-medium col-12-small">
+							<section class="box style1">
+								<br></br>
+								<h2><a href="">Probability and Statistics</a></h2>
+								<!-- make subsection for Important Formulas and left align it-->
+								<ul id="left-align">
+									<li><h3>Important Formulas</h3></li>
+									<ul>
+										<li><h4>Basics of Probability</h4></li>
+										<ol id="small-font">
+											<li>$P(A^{c}) = 1 - P(A)$</li>
+											<li>$P(A \cup B) = P(A) + P(B) - P(A \cap B)$</li>
+											<li>$P(A \cap B) = P(A)*P(B/A)$</li>
+											<li>$P(A/A) = 1$</li>
+											<li>$if\space A,B,C \space are\space mutually \space independent \space events \space \to \space P(A \cap B \cap C) = P(A)*P(B)*P(C) $</li>
+											<li>$if \space A \cap B = \phi, \space then \space P(B/A) = 0$</li>
+											<li>$ P(B \cap C / A) = P(B/ (A \cap C)) * P(C/A) $</li>
+											<li>$P(A_1 \cap A_2 \space \cap ... A_n) = P(A_1)*P(A_2/A_1)*P(A_3/A_2 \cap A_1)*...P(A_n/A_1 \cap A_2 \space \cap ... A_{n-1})$</li>
+											<li>$P(B) = \sum_{i}^{}P(B/A_i)*P(A_i)$</li>
+											<li>$Bayes' \space Theorem: \space P(A_i/B) = \frac{P(A_i)*P(B/A_i)}{\sum_{j}^{}P(A_j)*P(B/A_j)}$</li>
+										</ol>
+										<li><h4>Cumulative Distribution Function [F(x)]</h4></li>
+										<ol id="small-font">
+											<li>$F(x) = P(X \leq x), \space where \space P(X) \to Probability \space Mass \space Function \space (PMF)$</li>
+											<li>$F(x) = \int_{-\infty}^{x}f(t)dt, \space f(t) \to Probability \space Density \space Function \space (PDF)$</li>
+										</ol>
+										<li><h4>Mean and Variance</h4></li>
+										<ol id="small-font">
+											<li>$E(x) = \int_{-\infty}^{\infty}x*f(x)\space dx \space\space \textbf{or} \space\space E(x) = \sum_{i}^{}x_i * f(x_i)$</li>
+											<li>$E(ax+b) = a*E(x) + b, \space where  \space a,b \to constants$</li>
+											<li>$if \space P(x\ge 0) = 1 \space \& \space E(x) \space exists \space \Rightarrow  \space E(x)\ge 0$</li>
+											<li>$E(g(x))=\sum_{i}^{}g(x_i)P(X=x_i) \space \textbf{or} \space \int_{-\infty }^{\infty} g(x)*f(x)dx$</li>
+											<li>$E(x) = \int_{0}^{\infty}(1-F(x))dx - \int_{-\infty}^{0}F(x)dx, \space where \space F(x) \to Cumulative \space Distribution \space Function$</li>
+											<li>$E(x)= \sum_{k=0}^{\infty}k*P(x=k) = \sum_{k=0}^{\infty}P(x>k)$</li>
+											<li>$Var(x) \ge 0$</li>
+											<li>$Var(x) = E[(x - \mu)^2] = E(x^2) - E(x)^2$</li>
+											<li>$Var(ax+b) = a^2*Var(x)$</li>
+											<li>$Var(x+y) = Var(x) + Var(y) + 2Cov(x,y)$</li>
+											<li>$Cov(x,y) = E[(x-\mu_x)(y-\mu_y)] = E(xy) - E(x)E(y)$</li>
+											<li>$Cov(x,x) = Var(x)$</li>
+											<li>$Cov(x,y+z) = Cov(x,y) + Cov(x,z)$</li>
+											<li>$Cov(ax+b,cy+d) = ac*Cov(x,y)$</li>
+											<li>$Cov(x,y) \le \sqrt{Var(x)*Var(y)}$</li>
+											<li>$Corr(x,y) = \frac{Cov(x,y)}{\sqrt{Var(x)*Var(y)}}$</li>
+											<li>$Corr(x,y) \in [-1,1]$</li>
+											<li>$Corr(x,y) = 1 \space \Rightarrow \space y = ax+b, \space where \space a>0$</li>
+											<li>$Corr(x,y) = -1 \space \Rightarrow \space y = ax+b, \space where \space a<0$</li>
+											<li>$Corr(x,y) = 0 \space \Rightarrow \space x,y \space are \space independent$</li>
+											<li>$Var(x+y) = Var(x) + Var(y) + 2\sigma_x\sigma_yCorr(x,y)$</li>
+											<li>$Var(x-y) = Var(x) + Var(y) - 2\sigma_x\sigma_yCorr(x,y)$</li>
+											<li>$Var(ax+by) = a^2Var(x) + b^2Var(y) + 2ab\sigma_x\sigma_yCorr(x,y)$</li>
+											<li>$\textbf{z-score :} \frac{x-\mu}{\sigma}$, z-score shows how many standard deviations the data point is from the mean.</li>
+										</ol>
+										<li><h4>Inequalities:</h4></li>
+										<ol id="small-font">
+											<li>$Markov \space Inequality: \space P(x\ge \epsilon) \le \frac{E(x)}{\epsilon}$</li>
+											<li>$Chebyshev \space Inequality: \space P(| x- \mu| \gt \epsilon) \le \frac{\sigma^{2}}{\epsilon^{2}}, \space where \space \mu,\sigma^2 \to mean,variance$</li>
+											<li>$Cauchy-Schwarz \space Inequality: \space E(XY)^2 \le E(X^2)E(Y^2)$</li>
+											<li>$Jensen's \space Inequality: \space E(g(x)) \ge g(E(x)), \space where \space g(x) \to convex \space function$</li>
+											<li>$Holder's \space Inequality: \space E(XY) \le (E(X^p))^{1/p}(E(Y^q))^{1/q}, \space where \space p,q \to conjugate \space exponents$</li>
+											<li>$Minkowski's \space Inequality: \space (E(X+Y)^p)^{1/p} \le (E(X^p))^{1/p} + (E(Y^p))^{1/p}, \space where \space p \ge 1$</li>
+										</ol>
+										<li><h4>Central Limit Theorem</h4></li>
+										<ol id="small-font">
+											<li id="small-font"> In simpler terms, the Central Limit Theorem suggests that if you have a large enough sample size from a population with any distribution (as long as the sample is drawn randomly and the observations are independent), the distribution of the <b>sample means will be approximately normal</b>, even if the original population is not normally distributed.</li>
+											<li id="small-font"> The Central Limit Theorem is often applied in <b>hypothesis testing, confidence interval estimation</b>, and statistical inference.</li>
+											<li id="small-font"> As sampling size increase sample mean tends to normal distribution highly likely. </li>
+											
+										</ol>
+									</ul>
+								</ul>
+								<!-- put numbering bullets -->
+
+							</section>
+						</div>
+						<div class="col-4 col-6-medium col-12-small">
+							<section class="box style1">
+								<h2><a href="">Machine Learning</a></h2>
+								<ul id="left-align">
+									<li><h3>Hypothesis Testing</h3></li>
+									<ol>
+										<li id="small-font">The null hypothesis typically represents the status quo or the hypothesis of no effect or no difference, while the <b>alternative hypothesis represents the hypothesis you want to test or the claim you are interested in</b>.</li>
+										<li id="small-font"><b> In p-test</b>, smaller p-values (typically less than 0.05) represents the strong evidence against null hypothesis. But p-value greater than 0.05 is insufficient evidence for rejecting null hypothesis. </li>
+										<li id="small-font"> The p-value represents the probability of observing a sample mean as extreme as or more extreme than the one obtained, assuming the null hypothesis is true.</li>
+										<li id="small-font"> White noise is a noisy data which can not be interrelated. In mathematical terms:
+											<ul>
+												<li>It has constant mean</li>
+												<li>It has constant variance</li>
+												<li>It has no auto correlation (we can use tree regressors for these)</li>
+											</ul>
+										</li>
+										<li id="small-font"> The t-test calculates a t-statistic, measures the difference between the means of the two groups relative to the variability within each group.</li>
+										
+									</ol>
+									<li><h3>Linear Regression</h3></li>
+									<ul>
+										<li><b>Assumptions of Linear Regression</b></li>
+										<ol id="small-font">
+											<li>Linear relationship between dependent and independent variables</li>
+											<li>Independent variables are not correlated</li>
+											<li>Residuals are normally distributed</li>
+											<li>Residuals have constant variance</li>
+											<li>Residuals are independent of each other</li>
+										</ol>
+									</ul>
+								</ul>
+							</section>
+						</div>
+					</div>
+				</div>
+			</article>
+		
 		<!-- Contact -->
 			<article id="contact" class="wrapper style4">
 				<div class="container medium">
@@ -159,12 +290,23 @@
 			</article>
 
 		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+		<script>
+			MathJax.Hub.Config({
+			  tex2jax: {
+				inlineMath: [['$', '$'], ['\\(', '\\)']],
+				displayMath: [['$$', '$$'], ['\\[', '\\]']],
+				processEscapes: true,
+				processEnvironments: true
+			  }
+			});
+		</script>
 
 	</body>
 </html>
