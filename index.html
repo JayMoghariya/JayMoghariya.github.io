@@ -11,10 +11,15 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<style>
-			#left-align{
+			.left-align{
 				text-align: left;
 			}
-			#small-font{
+			.small-font{
+				font-size: 15px;
+				font-family: Verdana, Geneva, Tahoma, sans-serif;
+			}
+			.mathjax-smallfont{
+				max-width: 100%;
 				font-size: 15px;
 				font-family: Verdana, Geneva, Tahoma, sans-serif;
 			}
@@ -166,11 +171,11 @@
 								<br></br>
 								<h2><a href="">Probability and Statistics</a></h2>
 								<!-- make subsection for Important Formulas and left align it-->
-								<ul id="left-align">
+								<ul class="left-align">
 									<li><h3>Important Formulas</h3></li>
 									<ul>
 										<li><h4>Basics of Probability</h4></li>
-										<ol id="small-font">
+										<ol class="mathjax-smallfont">
 											<li>$P(A^{c}) = 1 - P(A)$</li>
 											<li>$P(A \cup B) = P(A) + P(B) - P(A \cap B)$</li>
 											<li>$P(A \cap B) = P(A)*P(B/A)$</li>
@@ -183,12 +188,12 @@
 											<li>$Bayes' \space Theorem: \space P(A_i/B) = \frac{P(A_i)*P(B/A_i)}{\sum_{j}^{}P(A_j)*P(B/A_j)}$</li>
 										</ol>
 										<li><h4>Cumulative Distribution Function [F(x)]</h4></li>
-										<ol id="small-font">
+										<ol class="mathjax-smallfont">
 											<li>$F(x) = P(X \leq x), \space where \space P(X) \to Probability \space Mass \space Function \space (PMF)$</li>
 											<li>$F(x) = \int_{-\infty}^{x}f(t)dt, \space f(t) \to Probability \space Density \space Function \space (PDF)$</li>
 										</ol>
 										<li><h4>Mean and Variance</h4></li>
-										<ol id="small-font">
+										<ol class="mathjax-smallfont">
 											<li>$E(x) = \int_{-\infty}^{\infty}x*f(x)\space dx \space\space \textbf{or} \space\space E(x) = \sum_{i}^{}x_i * f(x_i)$</li>
 											<li>$E(ax+b) = a*E(x) + b, \space where  \space a,b \to constants$</li>
 											<li>$if \space P(x\ge 0) = 1 \space \& \space E(x) \space exists \space \Rightarrow  \space E(x)\ge 0$</li>
@@ -215,7 +220,7 @@
 											<li>$\textbf{z-score :} \frac{x-\mu}{\sigma}$, z-score shows how many standard deviations the data point is from the mean.</li>
 										</ol>
 										<li><h4>Inequalities:</h4></li>
-										<ol id="small-font">
+										<ol class="mathjax-smallfont">
 											<li>$Markov \space Inequality: \space P(x\ge \epsilon) \le \frac{E(x)}{\epsilon}$</li>
 											<li>$Chebyshev \space Inequality: \space P(| x- \mu| \gt \epsilon) \le \frac{\sigma^{2}}{\epsilon^{2}}, \space where \space \mu,\sigma^2 \to mean,variance$</li>
 											<li>$Cauchy-Schwarz \space Inequality: \space E(XY)^2 \le E(X^2)E(Y^2)$</li>
@@ -224,10 +229,10 @@
 											<li>$Minkowski's \space Inequality: \space (E(X+Y)^p)^{1/p} \le (E(X^p))^{1/p} + (E(Y^p))^{1/p}, \space where \space p \ge 1$</li>
 										</ol>
 										<li><h4>Central Limit Theorem</h4></li>
-										<ol id="small-font">
-											<li id="small-font"> In simpler terms, the Central Limit Theorem suggests that if you have a large enough sample size from a population with any distribution (as long as the sample is drawn randomly and the observations are independent), the distribution of the <b>sample means will be approximately normal</b>, even if the original population is not normally distributed.</li>
-											<li id="small-font"> The Central Limit Theorem is often applied in <b>hypothesis testing, confidence interval estimation</b>, and statistical inference.</li>
-											<li id="small-font"> As sampling size increase sample mean tends to normal distribution highly likely. </li>
+										<ol class="small-font">
+											<li class="small-font"> In simpler terms, the Central Limit Theorem suggests that if you have a large enough sample size from a population with any distribution (as long as the sample is drawn randomly and the observations are independent), the distribution of the <b>sample means will be approximately normal</b>, even if the original population is not normally distributed.</li>
+											<li class="small-font"> The Central Limit Theorem is often applied in <b>hypothesis testing, confidence interval estimation</b>, and statistical inference.</li>
+											<li class="small-font"> As sampling size increase sample mean tends to normal distribution highly likely. </li>
 											
 										</ol>
 									</ul>
@@ -239,26 +244,26 @@
 						<div class="col-4 col-6-medium col-12-small">
 							<section class="box style1">
 								<h2><a href="">Machine Learning</a></h2>
-								<ul id="left-align">
+								<ul class="left-align">
 									<li><h3>Hypothesis Testing</h3></li>
 									<ol>
-										<li id="small-font">The null hypothesis typically represents the status quo or the hypothesis of no effect or no difference, while the <b>alternative hypothesis represents the hypothesis you want to test or the claim you are interested in</b>.</li>
-										<li id="small-font"><b> In p-test</b>, smaller p-values (typically less than 0.05) represents the strong evidence against null hypothesis. But p-value greater than 0.05 is insufficient evidence for rejecting null hypothesis. </li>
-										<li id="small-font"> The p-value represents the probability of observing a sample mean as extreme as or more extreme than the one obtained, assuming the null hypothesis is true.</li>
-										<li id="small-font"> White noise is a noisy data which can not be interrelated. In mathematical terms:
+										<li class="small-font">The null hypothesis typically represents the status quo or the hypothesis of no effect or no difference, while the <b>alternative hypothesis represents the hypothesis you want to test or the claim you are interested in</b>.</li>
+										<li class="small-font"><b> In p-test</b>, smaller p-values (typically less than 0.05) represents the strong evidence against null hypothesis. But p-value greater than 0.05 is insufficient evidence for rejecting null hypothesis. </li>
+										<li class="small-font"> The p-value represents the probability of observing a sample mean as extreme as or more extreme than the one obtained, assuming the null hypothesis is true.</li>
+										<li class="small-font"> White noise is a noisy data which can not be interrelated. In mathematical terms:
 											<ul>
 												<li>It has constant mean</li>
 												<li>It has constant variance</li>
 												<li>It has no auto correlation (we can use tree regressors for these)</li>
 											</ul>
 										</li>
-										<li id="small-font"> The t-test calculates a t-statistic, measures the difference between the means of the two groups relative to the variability within each group.</li>
+										<li class="small-font"> The t-test calculates a t-statistic, measures the difference between the means of the two groups relative to the variability within each group.</li>
 										
 									</ol>
 									<li><h3>Linear Regression</h3></li>
 									<ul>
 										<li><b>Assumptions of Linear Regression</b></li>
-										<ol id="small-font">
+										<ol class="small-font">
 											<li>Linear relationship between dependent and independent variables</li>
 											<li>Independent variables are not correlated</li>
 											<li>Residuals are normally distributed</li>
