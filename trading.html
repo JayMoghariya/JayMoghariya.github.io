@@ -1,0 +1,108 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Jay Moghariya</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<style>
+			.left-align{
+				text-align: left;
+			}
+			.small-font{
+				font-size: 15px;
+				font-family: Verdana, Geneva, Tahoma, sans-serif;
+			}
+			.mathjax-smallfont{
+				max-width: 100%;
+				font-size: 15px;
+				font-family: Verdana, Geneva, Tahoma, sans-serif;
+			}
+		</style>
+	</head>
+
+    <body>
+
+        <!-- Nav -->
+        <nav id="nav">
+            <ul class="container">
+                <li><a href="index.html#top">About Me</a></li>
+                <li><a href="index.html#work">Work</a></li>
+                <li><a href="index.html#notes">Notes</a></li>
+                <li><a href="trading.html">Trading</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </nav>
+
+            <article id="notes" class="wrapper style2">
+                <div class="container">
+                    <header>
+						<h1>Trading</h1>
+						<div class="left-align">
+							<ul class="small-font">
+								<li><a href="#types-of-orders">Types of Orders</a></li>
+								<li><a href="#trading-system-architecture">Trading system architecture</a></li>
+							</ul>
+						</div>
+					</header>
+                    <div class="col-4 col-6-medium col-12-small">
+						<section class="box style1">
+							<h2 id="types-of-orders"> Types of Orders </h2>
+							<ol class="left-align small-font">
+								<li><b>CNC/Delivery - Cash and Carry</b> : Buy and Sell Delivery Orders</li>
+								<li><b>MIS/Intraday - Margin Intraday Square-Off</b> : Buy and Sell Intraday Orders</li>
+								<li><b>Limit Order</b></li>
+								<li><b>Market Order</b></li>
+								<li><b>Stop Loss Market Order</b></li>
+								<li><b>Stop Loss Limit Order</b></li>
+								<li><b>Cover Order</b>: Cover order covers the loss, so it has only stop-loss no target.</li>
+								<li><b>Bracket Order</b>: Bracket order has target as well as stoploss. If the target gets hit the stop loss order will be cancelled automatically.</li>
+								<li><b>Trailing Stop Loss</b>: Trailing stop-loss can be set at a percentage => as underlying price rises the stoploss also rises maintaining 
+									a distance/percentage. However, if the market price drops, the stop price remains unchanged.
+									 <a href="https://www.5paisa.com/stock-market-guide/generic/trailing-stop-loss#:~:text=A%20Trailing%20Stop%20Loss%20is,order%20trails%20along%2C%20moving%20up.">Visit for more details</a></li>
+								<li><b>After Market Order(AMO)</b>: a sort of order that can be placed after regular trading hours and is executed once the market opens</li>
+								<li><b>OCO - One Cancels the Other</b>: One-cancels-the-other (OCO) is a type of conditional order for a pair of orders in which the execution of one automatically cancels the other.
+									 Generally used for volatile stocks. e.g. You may have a Sell target with, say, 10% profit at Rs 709.5 or a Loss target of, say 10% at Rs 508.5. 
+									You want only one of these order to execute in this case.</li>
+								<li><b>Iceberg Order</b>: Iceberg is an order type that slices orders of larger quantity (or value) into smaller orders, where each small order,
+									 or leg, is sent to the exchange only after the previous order is filled.</li>
+								<li><b>Immediate or Cancel (IOC)</b>: An immediate-or-cancel order (IOC order) is one which has to be executed immediately and fully, or as
+									 fully as possible. Non-executed parts of an IOC order are deleted without entry in the order book.</li>
+								<li><b>Fill or Kill (FOK)</b>: A fill-or-kill order is an order to buy or sell a stock that must be executed immediately in its entirety;
+									 otherwise, the entire order will be cancelled (i.e., no partial execution of the order is allowed).</li> 
+							</ol>
+						</section>
+                        <section class="box style1">
+                            <h2 id="trading-system-architecture"> Trading system architecture </h2>
+							<ul class="left-align small-font">
+								<li>We can measure the movement probability in different time-frames. Like (-1,2) is the movement of Bid-2 to
+									Bid-1. Similarly, (1,2) is the movement of Ask-2 to Ask-1. </li>
+								</li>
+								<li>Statistical Arbitrage vs Structural Arbitrage</li>
+								<li>Volatility Arbitrage</li>
+                        </section>
+                    </div>
+                </div>
+            </article>
+
+    		<!-- Scripts -->
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+		<script>
+			MathJax.Hub.Config({
+			  tex2jax: {
+				inlineMath: [['$', '$'], ['\\(', '\\)']],
+				displayMath: [['$$', '$$'], ['\\[', '\\]']],
+				processEscapes: true,
+				processEnvironments: true
+			  }
+			});
+		</script>
+
+	</body>
+</html>

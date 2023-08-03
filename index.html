@@ -1,9 +1,4 @@
 <!DOCTYPE HTML>
-<!--
-	Miniport by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
 <html>
 	<head>
 		<title>Jay Moghariya</title>
@@ -13,6 +8,8 @@
 		<style>
 			.left-align{
 				text-align: left;
+				color: black;
+				font-weight: 500;
 			}
 			.small-font{
 				font-size: 15px;
@@ -30,9 +27,11 @@
 		<!-- Nav -->
 			<nav id="nav">
 				<ul class="container">
-					<li><a href="#top">About Me</a></li>
+					<li><a href="index.html#top">About Me</a></li>
 					<li><a href="#work">Work</a></li>
 					<li><a href="#notes">Notes</a></li>
+					<li><a href="trading.html">Trading</a></li>
+					<!-- <li><a href="cfalevel1.html">CFA I Notes</a></li> -->
 					<li><a href="#contact">Contact</a></li>
 				</ul>
 			</nav>
@@ -168,7 +167,6 @@
 					<!-- Each division will take the full horizontal length -->
 					 	<div class="col-4 col-6-medium col-12-small">
 							<section class="box style1">
-								<br></br>
 								<h2><a href="">Probability and Statistics</a></h2>
 								<!-- make subsection for Important Formulas and left align it-->
 								<ul class="left-align">
@@ -271,6 +269,84 @@
 											<li>Residuals are independent of each other</li>
 										</ol>
 									</ul>
+								</ul>
+							</section>
+						</div>
+						<div class="col-4 col-6-medium col-12-small">
+							<section class="box style1" id="python-notes">
+								<h2><a href="">Python</a></h2>
+								<ul class="left-align small-font">
+									<li><h4>Decorator</h4></li>
+									<ul>
+										<li>Decorators are a powerful feature that allows you to modify the behavior of functions or methods
+											 using the @decorator syntax.</li>
+										<li><b>@staticmethod</b>: This decorator is used to define a class method within a class. Class methods take the class (usually denoted as cls) 
+											as the first parameter and can access class-level variables.</li>
+										<li><b>@property</b>: This decorator allows you to define a method as a getter for a class attribute.</li>
+										<li><b>@attribute.setter</b>: This is used in combination with the @property decorator to define a method as a setter for the specified attribute.</li>
+										<li><b>@attribute.deleter</b>: This is used in combination with the @property decorator to define a method as a deleter for the specified attribute.</li>
+										<li><b>@abstractmethod</b>: This decorator is part of the abc (Abstract Base Classes) module and is used to define abstract methods in abstract classes. 
+											Abstract methods must be implemented by the concrete subclasses.</li>
+										<li><b>@functools.wraps</b>: This is not directly related to class attributes but is commonly used with decorators to preserve the metadata of the original function, such as its name, docstring, and module.</li>
+										<li><b>@lru_cache</b>: This decorator is part of the functools module and is used for memoization. It caches the results of a function and returns the cached result when the same arguments are passed again.</li>
+									</ul>
+									<li><h4>Compiler Vs. Interpretor</h4></li>
+									<ul>
+										<li>On a Broad Picture this is what happens:</li>
+										<ul>
+											<li>Compiler takes all the code in one go. It converts it into machine language and feed it to computer.</li>
+											<li>Interpretor takes one instruction at a time. Convert into machine language and feed it to computer. After its execution
+												it takes another instruction and so on. If error occurs in between it stops its execution.
+											</li>
+											<li>In general, interpreters tend to be slower than compilers for certain types of tasks due to their different approaches to executing code.</li>
+											<li>Compiled code can indeed be faster than interpreted code, especially for tasks that involve a lot of mathematical computations or complex algorithms.</li>
+											<li>Just-In-Time (JIT) compilation used in some interpreters (e.g., PyPy for Python) can dynamically compile parts of the code to machine code, narrowing the performance gap between interpreters and compilers.</li>
+										</ul>
+									</ul>
+									<li><h4>CPython vs PyPy</h4></li>
+									<ul>
+										<li>CPython is the default and most widely used implementation of Python. It is written in C and is the reference implementation of the language.</li>
+										<li>CPython includes a Global Interpreter Lock (GIL), which allows only one thread to execute Python bytecode at a time, limiting the performance of multi-threaded CPU-bound tasks.</li>
+										<li>PyPy is written in RPython (Restricted Python), and it includes a Just-In-Time (JIT) compiler, which dynamically compiles Python bytecode to machine code at runtime.</li>
+										<li>PyPy does not use the Global Interpreter Lock (GIL), which allows it to take better advantage of multiple CPU cores for multi-threaded CPU-bound tasks.</li>
+										<li>In general; PyPy is faster than CPython for CPU-bound tasks, but it is slower for I/O-bound tasks.</li>
+
+									</ul>
+									<li><h4>How Python Script executed?</h4></li>
+									<ol>
+										<li><b>Tokenization</b>: The Python interpreter reads the source code and breaks it down into individual tokens (keywords, identifiers, literals, etc.).</li>
+										<li><b>Parsing</b>:  The tokens are organized into a syntax tree, known as the Abstract Syntax Tree (AST). 
+											This step checks the code for syntax errors and creates a structured representation of the program.</li>
+										<li><b>Compilation</b>: The AST is compiled into bytecode, which is a lower-level representation of the code 
+											that the Python interpreter can understand and execute.</li>
+										<li><b>Interpretation</b>: The Python interpreter reads the bytecode and executes it line by line. 
+											It follows the control flow and executes the instructions accordingly.
+											 Python follows indentation-based syntax to indicate the control flow structures.</li>
+									</ol>
+								</ul>
+							</section>
+						</div>
+
+						<div class="col-4 col-6-medium col-12-small">
+							<section class="box style1">
+								<h2><a href="">OOPS and Memory</a></h2>
+								<ul class="left-align small-font">
+									<li><h4>Heap Allocation vs Stack Allocation</h4></li>
+									<ul>
+										<li>Heap Allocation is done using <b>new</b> keyword and Stack Allocation is done using <b>local variables</b>.</li>
+										<li>Stack memory is organized in a last-in-first-out (LIFO) structure called the stack.</li>
+										<li>Stack cannot persist beyond the lifetime of their function call. Once the function returns,
+											 the activation record is removed from the stack, and the memory used by local variables is released.</li>
+										<li>Heap memory is organized in a less structured manner. Memory is allocated from the heap and must be explicitly managed by the programmer.</li>
+										<li>Variables allocated on the heap have a longer lifetime than stack-allocated variables.
+											 They exist until explicitly deallocated by the programmer or until the program terminates. Calloc and Malloc are used for heap allocation.
+											Free is used for deallocation.</li>
+										<li>The memory returned by calloc is initialized to zero for each byte, meaning it is effectively initialized to all 0's.
+											 The memory returned by malloc is not initialized, and it contains garbage values.</li>
+										<li>Heap memory is slower to allocate and deallocate than stack memory.</li>
+										<li>Stack memory is limited and typically smaller than heap memory.</li>
+									</ul>
+
 								</ul>
 							</section>
 						</div>
