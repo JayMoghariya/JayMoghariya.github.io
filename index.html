@@ -45,17 +45,9 @@
 							<h3>Find me on ...</h3>
 							<ul class="social">
 								<li><a href="https://www.linkedin.com/in/jay-moghariya-115b1819b/" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
-								<li><a href="https://github.com/Jayu4444" class="icon brands fa-github"><span class="label">Github</span></a></li>
+								<li><a href="https://github.com/JayMoghariya" class="icon brands fa-github"><span class="label">Github</span></a></li>
 								<!--
-								<li><a href="#" class="icon solid fa-rss"><span>RSS</span></a></li>
-								<li><a href="#" class="icon brands fa-instagram"><span>Instagram</span></a></li>
-								<li><a href="#" class="icon brands fa-foursquare"><span>Foursquare</span></a></li>
-								<li><a href="#" class="icon brands fa-skype"><span>Skype</span></a></li>
-								<li><a href="#" class="icon brands fa-soundcloud"><span>Soundcloud</span></a></li>
 								<li><a href="#" class="icon brands fa-youtube"><span>YouTube</span></a></li>
-								<li><a href="#" class="icon brands fa-blogger"><span>Blogger</span></a></li>
-								<li><a href="#" class="icon brands fa-flickr"><span>Flickr</span></a></li>
-								<li><a href="#" class="icon brands fa-vimeo"><span>Vimeo</span></a></li>
 								-->
 							</ul>
 						</div>
@@ -323,6 +315,48 @@
 											It follows the control flow and executes the instructions accordingly.
 											 Python follows indentation-based syntax to indicate the control flow structures.</li>
 									</ol>
+									<li><h4>What are *args and *kwargs?</h4></li>
+									<ul><li>To pass a variable number of arguments to a function in Python, 
+										use the special syntax *args and **kwargs in the function specification. 
+										It is used to pass a variable-length, keyword-free argument list. By using the *,
+										 the variable we associate with the * becomes iterable, allowing you to do operations on it 
+										 such as iterating over it and using higher-order operations like map and filter.</li></ul>
+									<li><h4>What is the difference between a shallow copy and a deep copy?</h4></li>
+									<ul>
+										<li>A shallow copy creates a new object and then copies the elements of the original object to the
+											 new object. However, if the elements of the original object are references to other objects,
+											  the shallow copy only copies those references, not the actual objects. As a result, both the 
+											  original and the copied object will share the same internal references.</li>
+										<li>A deep copy, on the other hand, creates a completely independent new object and recursively 
+										copies all the elements and nested objects from the original object to the new one. In other words,
+											it duplicates the entire object hierarchy, including all nested objects, so the copied object is fully
+											independent of the original object.</li>
+										<li>Shallow copy can be done by copy.copy() while deep copy can be done by copy.deepcopy().</li>
+									</ul>
+									<li>Python is <b>dynamically typed language</b>,a language in which you do no have to specify the type of the object.</li>
+									<li>Tuple comprehension in python is not possible, by this I mean, (i for i in (1, 2, 3)) is not possible.</li>
+									<li>Enumerate in python gives an enumarate object which contains key value pair. Key being the indices of storable
+										and value being the value of the storable.</li>
+									<li>Python is neither purely pass-by-value nor pass-by-reference but has a pass-by-object-reference behavior,
+										 where the function can modify the contents of the object if it is mutable, and any changes are reflected in the original object. 
+										However, immutable objects cannot be modified within a function.</li>
+									<li><h4>Multiple Inheritance</h4></li>
+									<ul>
+									<li>Python supports multiple-inheritance. Now consider a case when you are inheriting a child class C
+										from parent class A and B. Now if both A and B have a method with same name, then the method of class A
+										 will be called first(As it is inherited first). This is called <b>Method Resolution Order (MRO)</b>.</li>
+									</li>
+									<li>
+										we can call the second parent's method or access the second parent variable as given, <b>child.__class__.__bases__[1].shared_variable</b>
+									</li>
+									</ul>
+									<li><h4>Memory management done in Python</h4></li>
+									<ul>
+										<li>Python uses its private heap space to manage the memory. Basically, all the objects and data structures are stored in the private heap 
+											space. Even the programmer can not access this private space as the interpreter takes care of this space. Python also has an inbuilt
+											 garbage collector, which recycles all the unused memory and frees the memory and makes it available to the heap space.</li>
+									</ul>
+									
 								</ul>
 							</section>
 						</div>
@@ -331,7 +365,7 @@
 							<section class="box style1">
 								<h2><a href="">OOPS and Memory</a></h2>
 								<ul class="left-align small-font">
-									<li><h4>Heap Allocation vs Stack Allocation</h4></li>
+									<li><h4>Heap Allocation vs Stack Allocation vs Static Allocation</h4></li>
 									<ul>
 										<li>Heap Allocation is done using <b>new</b> keyword and Stack Allocation is done using <b>local variables</b>.</li>
 										<li>Stack memory is organized in a last-in-first-out (LIFO) structure called the stack.</li>
@@ -345,8 +379,15 @@
 											 The memory returned by malloc is not initialized, and it contains garbage values.</li>
 										<li>Heap memory is slower to allocate and deallocate than stack memory.</li>
 										<li>Stack memory is limited and typically smaller than heap memory.</li>
+										<li>Static Allocation does not makes data structures and objects dynamically like stack allocation.</li>
+										<li>It has fixed memory address and manual management (explicit initialization).
+											 Static allocation is not able to manage the allocation of memory at run time.
+											 Examples of static allocation are global and static variables.</li>
 									</ul>
-
+									<li> Apperantly, difference between struct and class is that class is default private initialise while struct is private initialise.
+										We generally use struct for data storage and class for data abstraction. Struct can not have null while class can have.
+										<b>Struct can have methods, can become private and can be inherited if specified.</b>
+									</li>
 								</ul>
 							</section>
 						</div>
