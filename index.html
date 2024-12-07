@@ -5,6 +5,13 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.css" rel="stylesheet" />
+
+    <!-- Include Prism.js JavaScript for syntax highlighting -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.js"></script>
+
+    <!-- Include the Python syntax highlighting plugin -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
 		<style>
 			.left-align{
 				text-align: left;
@@ -321,6 +328,222 @@
 										It is used to pass a variable-length, keyword-free argument list. By using the *,
 										 the variable we associate with the * becomes iterable, allowing you to do operations on it 
 										 such as iterating over it and using higher-order operations like map and filter.</li></ul>
+									<li><h4>What is the difference between modules and packages in python?</h4></li>
+									<ul>
+										<li>
+											<table style="border: solid; border-color: black;"><thead style="border: solid; border-color: black;"><tr style="border: solid; border-color: black;"><th style="border: solid; border-color: black;">Feature</th><th style="border: solid; border-color: black;">Module</th><th>Package</th></tr></thead><tbody><tr><td><strong>Definition</strong></td><td>A single Python file.</td><td>A directory containing multiple modules and an <code>__init__.py</code> file.</td></tr><tr><td><strong>Structure</strong></td><td>Flat structure.</td><td>Hierarchical structure.</td></tr><tr><td><strong>Purpose</strong></td><td>Organizes code into files.</td><td>Organizes modules into a logical group.</td></tr><tr><td><strong>Import Syntax</strong></td><td><code>import module_name</code></td><td><code>from package_name import module_name</code></td></tr></tbody></table>
+										</li>
+										<li>A package is a way to group related modules.</li>
+										<li>Every package can contain multiple modules, and a module can exist independently of a package.</li>
+									</ul>
+									<li><h4>Can list,set or tuple be a key to dict?</h4></li>
+									<ul>
+										<li>List and set are mutable that is why can not be a key to dict, but tuple can be a key to dict if it contains immutable values.</li>
+										<li>Tuples in Python are immutable, meaning their values cannot be directly modified after creation. Once a tuple is created, you cannot:
+											<ol>
+												<li>Change an element (e.g., changing (2, 3, 4) to (2, 3, 5)).</li>
+												<li>Add elements (e.g., changing (2, 3, 4) to (2, 3, 4, 5)).</li>
+												<li>Remove elements.</li>
+											</ol>
+										</li>
+										<li>Although you cannot change a tuple in place, you can create a new tuple that reflects the desired changes.</li>
+										<pre><code class="language-python">
+# Example 1: Replace an Element
+t = (2, 3, 4)
+# Create a new tuple
+t = t[:2] + (5,)
+print(t)  # Output: (2, 3, 5)
+
+# Example 2: Add an Element
+t = (2, 3, 4)
+# Create a new tuple
+t = t + (5,)
+print(t)  # Output: (2, 3, 4, 5)
+
+# Example 3: Remove an Element
+t = (2, 3, 4)
+# Create a new tuple without the unwanted element
+t = t[:1] + t[2:]
+print(t)  # Output: (2, 4)
+										</code></pre>
+									</ul>
+									<li><h4>How does static work in python?</h4></li>
+									<ul>
+										<li>
+											Unlike other compile languages like C++/Java, python does not have seperate space for storing static varibles.
+										</li>
+										<li>
+											Instead as the python is interpreted language, variables are either local and global scoped, also there are class variables and instance variables.
+										</li>
+										<li>
+											Class variables are accessible by <b>@classmethod</b> by passing <b>cls</b> or <b>Myclass.class_variable_name</b>, while the instance variables are accessed by if obj = Myclass() then <b>obj.instance_variable_name</b>. Interpreter first searches the variable in the instance dict if not found go for class level variable.
+										</li>
+										<li>__dict__ for classes is read-only as a whole; you can modify entries, but you cannot replace the dictionary itself.</li>
+										<li>Staticmethods are for general utility they can not access the class variables directly except Myclass.class_variable_name</li>
+										<pre><code class="language-python">class MyClass:
+	static_var = 42  # Static variable (class attribute)
+
+# Create an instance
+obj = MyClass()
+
+# Access the static variable through the instance
+print(obj.static_var)  # Output: 42
+
+# Change the value of the static variable through the class
+MyClass.static_var = 100
+
+# Access it again from the instance -> As there is no entry of obj.static_var in obj instance directory
+print(obj.static_var)  # Output: 100
+
+# Create another instance and check
+another_obj = MyClass()
+print(another_obj.static_var)  # Output: 100
+another_obj.static_var = 150
+
+MyClass.static_var = 42
+print(another_obj.static_var)  # Output: 150
+
+del another_obj.static_var
+print(another_obj.static_var)  # Output: 42
+
+# See how __dict__ changes from below example
+class MyClass:
+    static_var = 42
+	
+	def instance_method(self):
+        pass
+
+	@classmethod
+	def class_method(cls):
+		return f"Class variable value is {cls.static_var}"
+
+    @staticmethod
+    def static_method():
+        pass
+
+# Create an instance
+obj = MyClass()
+
+print(MyClass.class_method())  # Output: Class variable value is 42
+
+# Check class and instance namespaces
+print(MyClass.__dict__)  # Output includes {'static_var': 42}
+print(obj.__dict__)      # Output: {}
+
+# Assign through the instance
+obj.static_var = 99
+
+# Now check namespaces again
+print(MyClass.__dict__)  # Output still includes {'static_var': 42}
+print(obj.__dict__)      # Output: {'static_var': 99}
+
+MyClass.__dict__['new_var'] = 100
+print(MyClass.new_var)  # Output: 100
+
+# Using dict you can dynamically add or modify the functions of class as follows
+class DataProcessor:
+    # Basic data processor with no transformations initially
+    pass
+
+# Example of user-defined plugins (functions to be added as methods)
+def normalize_text(self, text):
+    return " ".join(text.lower().split())
+
+def strip_html_tags(self, html):
+    from re import sub
+    return sub(r"<[^>]*>", "", html)
+
+def format_date(self, date_str):
+    from datetime import datetime
+    return datetime.strptime(date_str, "%Y-%m-%d").strftime("%d/%m/%Y")
+
+# Dynamically add these plugins as methods to the DataProcessor class
+DataProcessor.normalize_text = normalize_text
+DataProcessor.strip_html_tags = strip_html_tags
+DataProcessor.format_date = format_date
+
+# Use the dynamically extended class
+processor = DataProcessor()
+
+# Call the dynamically added methods
+print(processor.normalize_text("  HELLO    WORLD "))  # Output: "hello world"
+print(processor.strip_html_tags("<p>Hello <b>World</b></p>"))  # Output: "Hello World"
+print(processor.format_date("2024-12-06"))  # Output: "06/12/2024"
+
+# dict also contains
+										</code></pre>
+										<pre><code class="language-json">
+{
+	'__module__': '__main__',            # Module in which the class is defined
+	'static_var': 42,                   # Static variable
+	'instance_method': <function ...>,  # Instance method
+	'class_method': <classmethod object>,  # Class method
+	'static_method': <staticmethod object>,  # Static method
+	'__dict__': <attribute '__dict__' of 'MyClass' objects>,  # Instance attributes storage
+	'__weakref__': <attribute '__weakref__' of 'MyClass' objects>,  # Weak references
+	'__doc__': None                     # Docstring for the class (if any)
+}
+										</code></pre>
+									</ul>
+									<li><h4>Difference Between Class Attributes (cls) and Instance Attributes (self)</h4></li>
+									<ul>
+										<li>
+											In Python, class attributes and instance attributes are both used to store data, but they differ in terms of their scope, usage, and lifetime.
+											<ul>
+												<li>Class Attributes (cls)</li>
+												<ul>
+													<li>Shared by all instances of the class.</li>
+													<li>Defined at the class level and can be accessed or modified by any instance or method of the class.</li>
+													<li>Typically used for values or settings that should be consistent across all instances.</li>
+												</ul>
+												<li>Instance Attributes (self)</li>
+												<ul>
+													<li>Specific to each instance of the class.</li>
+													<li>Defined inside the __init__ method or other instance methods.</li>
+													<li>Each object (instance) has its own copy of the instance attributes, and modifying one instance's attribute does not affect others.</li>
+												</ul>
+											</ul>
+										</li>
+										<pre><code class="language-python">class Car:
+	wheels = 4  # Class attribute (shared across all instances)
+
+	def __init__(self, make, model):
+		self.make = make  # Instance attribute (unique to each instance)
+		self.model = model  # Instance attribute (unique to each instance)
+
+	@classmethod
+	def change_wheels(cls, new_wheel_count):
+		cls.wheels = new_wheel_count  # Modify class attribute
+
+	def display(self):
+		print(f"Make: {self.make}, Model: {self.model}, Wheels: {self.wheels}")
+
+# Create two instances
+car1 = Car("Toyota", "Corolla")
+car2 = Car("Honda", "Civic")
+
+# Display instance data
+car1.display()  # Make: Toyota, Model: Corolla, Wheels: 4
+car2.display()  # Make: Honda, Model: Civic, Wheels: 4
+
+# Modify class attribute via class method
+Car.change_wheels(6)
+
+# After modification, class attribute changes for all instances
+car1.display()  # Make: Toyota, Model: Corolla, Wheels: 6
+car2.display()  # Make: Honda, Model: Civic, Wheels: 6
+
+# Modify instance attribute for car1
+car1.wheels = 8  # This will not affect car2, as it's instance-specific
+
+# Now car1 has a different number of wheels
+car1.display()  # Make: Toyota, Model: Corolla, Wheels: 8
+car2.display()  # Make: Honda, Model: Civic, Wheels: 6</code></pre>
+									</ul>
+									<li><h4>What is the difference between static and normal method?</h4></li>
+									<ul>
+										<table style="border: solid; border-color: black;"><thead style="border: solid; border-color: black;"><tr><th style="border: solid; border-color: black;">Use Case</th><th style="border: solid; border-color: black;">Method Type</th><th style="border: solid; border-color: black;">Reason</th></tr></thead><tbody style="border: solid; border-color: black;"><tr style="border: solid; border-color: black;"><td >Independent utility function</td><td>Static Method</td><td>Doesn't depend on <code>self</code> or <code>cls</code>.</td></tr><tr style="border: solid; border-color: black;"><td>Needs access to instance data</td><td>Normal Method</td><td>Requires <code>self</code> for accessing instance-specific data or behavior.</td></tr><tr style="border: solid; border-color: black;"><td>Needs access to class data</td><td>Class Method</td><td>Requires <code>cls</code> for accessing or modifying class-level data.</td></tr></tbody></table>
+									</ul>
 									<li><h4>What is the difference between a shallow copy and a deep copy?</h4></li>
 									<ul>
 										<li>A shallow copy creates a new object and then copies the elements of the original object to the
