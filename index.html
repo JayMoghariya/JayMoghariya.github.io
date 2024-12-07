@@ -540,6 +540,155 @@ car1.wheels = 8  # This will not affect car2, as it's instance-specific
 car1.display()  # Make: Toyota, Model: Corolla, Wheels: 8
 car2.display()  # Make: Honda, Model: Civic, Wheels: 6</code></pre>
 									</ul>
+									<li><h4>Is python pass by value or pass by reference?</h4></li>
+									<ul>
+										<pre><code class="language-python">def appendNumber(arr):
+	arr.append(4)
+arr = [1, 2, 3]
+print(arr)  #Output: => [1, 2, 3]
+appendNumber(arr)
+print(arr)  #Output: => [1, 2, 3, 4]</code></pre>
+									</ul>
+									<li><h4>What is the difference between .py and .pyc files?</h4></li>
+										<ul>
+											<li>.py files contain the source code of a program. Whereas, .pyc file contains the bytecode of your program. We get bytecode after compilation of .py file (source code). .pyc files are not created for all the files that you run. It is only created for the files that you import.</li>
+											<li>Before executing a python program python interpreter checks for the compiled files. If the file is present, the virtual machine executes it. If not found, it checks for .py file. If found, compiles it to .pyc file and then python virtual machine executes it.</li>
+											<li>Having .pyc file saves you the compilation time.</li>
+									</ul>
+									<!-- <li><h4>What is the difference between xrange and range in Python?</h4></li>
+									<ul>
+										<li>xrange() and range() are quite similar in terms of functionality. They both generate a sequence of integers, with the only difference that range() returns a Python list, whereas, xrange() returns an xrange object.</li>
+										<li>So how does that make a difference? It sure does, because unlike range(), xrange() doesn't generate a static list, it creates the value on the go. This technique is commonly used with an object-type generator and has been termed as "yielding".</li>
+										<li>Yielding is crucial in applications where memory is a constraint. Creating a static list as in range() can lead to a Memory Error in such conditions, while, xrange() can handle it optimally by using just enough memory for the generator (significantly less in comparison).</li>
+										<li><b>Note:</b> xrange has been deprecated as of Python 3.x. Now range does exactly the same as what xrange used to do in Python 2.x, since it was way better to use xrange() than the original range() function in Python 2.x.</li>
+									</ul> -->
+									<li><h4>How do you copy an object in Python?</h4></li>
+									<ul>
+										<li>
+											"=" operator does not create a copy instead it creates a binding reference. To copy we need to use <b>copy module</b>.
+										</li>
+										<li><b>Shallow Copy</b> is a bit-wise copy of an object. The copied object created has an exact copy of the values in the original object. If either of the values is a reference to other objects, just the reference addresses for the same are copied.</li>
+										<li><b>Deep Copy</b> copies all values recursively from source to target object, i.e. it even duplicates the objects referenced by the source object.</li>
+									</ul>
+									<pre><code class="language-python">from copy import copy, deepcopy
+list_1 = [1, 2, [3, 5], 4]
+## shallow copy
+list_2 = copy(list_1) 
+list_2[3] = 7
+list_2[2].append(6)
+list_2    # output => [1, 2, [3, 5, 6], 7]
+list_1    # output => [1, 2, [3, 5, 6], 4]
+## deep copy
+list_3 = deepcopy(list_1)
+list_3[3] = 8
+list_3[2].append(7)
+list_3    # output => [1, 2, [3, 5, 6, 7], 8]
+list_1    # output => [1, 2, [3, 5, 6], 4]</code></pre>
+									<li><h4>Can __init__ be called manually?</h4></li>
+									<ul>
+										<li>Yes, we can call it manually for resetting but  one has to be cautious.</li>
+									</ul>
+									<pre><code class="language-python">class MyClass:
+	def __init__(self, value):
+		self.value = value
+		print("Reinitializing...")
+
+obj = MyClass(10)
+obj.other_attribute = "Some data"
+obj.__init__(20)  # Resets value but may not preserve other_attribute
+print(obj.value)  # 20
+print(obj.other_attribute)  # AttributeError: 'MyClass' object has no attribute 'other_attribute'
+
+class Employee:
+
+   # init method / constructor
+   def __init__(self, emp_name):
+       self.emp_name = emp_name
+
+   # introduce method
+   def introduce(self):
+       print('Hello, I am ', self.emp_name)
+
+emp = Employee('Mr Employee')    # __init__ method is called here and initializes the object name with "Mr Employee"
+emp.introduce()</code></pre>
+									<li><h4>How to call method of parent in multiply inherited child?</h4></li>
+									<ul>
+										<li>You can call it using Parent2.method(child, arguments)</li>
+										<li>If not specified and same method exist in multiple parent then MRO resolves which one to call. It is being called using super().method().</li>
+									</ul>
+									<pre><code class="language-python">class Parent1:
+	def method(self):
+		print("Method in Parent1")
+		super().method()  # Calls the next method in MRO
+
+class Parent2:
+	def method(self):
+		print("Method in Parent2")
+
+class Child(Parent1, Parent2):
+	def method(self):
+		print("Method in Child")
+		super().method()
+
+child = Child()
+child.method()
+
+#Output
+Method in Child
+Method in Parent1
+Method in Parent2
+
+
+class Parent1:
+    pass
+
+class Parent2:
+    pass
+
+class Child(Parent1, Parent2):
+    def method(self):
+        super().method()
+
+child = Child()
+child.method()  # Raises an AttributeError
+
+class Parent1:
+    def method(self):
+        print("Method in Parent1")
+
+class Parent2:
+    def method(self):
+        print("Method in Parent2")
+
+class Child(Parent1, Parent2):
+    def method(self):
+        print("Method in Child")
+        super(Parent2, self).method()  # Explicitly skip Parent1 and call Parent2's method
+
+child = Child()
+child.method()
+
+#Output
+Method in Child
+Method in Parent2</code></pre>
+									<li><h4>How does private variables accessible in python?</h4></li>
+									<ul>
+										<li>It is accessible using getter-setter and <b>instance._ClassName__private_var</b> mainly. If you try to access using <b>Instance.__private_var</b> then it will raise AttributeError.</li>
+									</ul>
+									<pre><code class="language-python">class Parent:
+	def __init__(self):
+		self.__private_var = "Parent private variable"
+
+class Child(Parent):
+	def __init__(self):
+		super().__init__()
+		self.__private_var = "Child private variable"
+
+child = Child()
+
+# Access mangled names
+print(child._Parent__private_var)  # Output: Parent private variable
+print(child._Child__private_var)   # Output: Child private variable</code></pre>
 									<li><h4>What is the difference between static and normal method?</h4></li>
 									<ul>
 										<table style="border: solid; border-color: black;"><thead style="border: solid; border-color: black;"><tr><th style="border: solid; border-color: black;">Use Case</th><th style="border: solid; border-color: black;">Method Type</th><th style="border: solid; border-color: black;">Reason</th></tr></thead><tbody style="border: solid; border-color: black;"><tr style="border: solid; border-color: black;"><td >Independent utility function</td><td>Static Method</td><td>Doesn't depend on <code>self</code> or <code>cls</code>.</td></tr><tr style="border: solid; border-color: black;"><td>Needs access to instance data</td><td>Normal Method</td><td>Requires <code>self</code> for accessing instance-specific data or behavior.</td></tr><tr style="border: solid; border-color: black;"><td>Needs access to class data</td><td>Class Method</td><td>Requires <code>cls</code> for accessing or modifying class-level data.</td></tr></tbody></table>
